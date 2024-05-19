@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useLocation, useNavigate, Link } from "react-router-dom"
-import deezer from "stores/deezer"
+import { fetchDeezer } from "stores/deezer"
 import { v4 as uuid } from "uuid"
 
 export default function SearchPage() {
@@ -8,7 +8,7 @@ export default function SearchPage() {
     const urlSearchParams = new URLSearchParams(location.search)
     const urlSearchQuery = urlSearchParams.get("q")
 
-    const [searchQuery, setSearchQuery] = useState(urlSearchQuery)
+    const [searchQuery, setSearchQuery] = useState(urlSearchQuery || "")
     const [searchResults, setSearchResults] = useState([])
 
     const navigate = useNavigate()
@@ -20,10 +20,12 @@ export default function SearchPage() {
 
     useEffect(() => {
         async function fetchSearchResults() {
-            const result = await deezer.search(urlSearchQuery)
-            setSearchResults(result.data)
+            const result = await fetchDeezer({ resource: "search", params: { q: urlSearchQuery } })
+            setSearchResults(result.data.data)
         }
-        fetchSearchResults()
+        if (urlSearchQuery) {
+            fetchSearchResults()
+        }
     }, [urlSearchQuery])
 
     return (
@@ -50,24 +52,24 @@ export default function SearchPage() {
                 </thead>
 
                 <tbody>
-                    {searchResults.map((result) => {
+                    {searchResults.map((track) => {
                         return (
                             <tr key={uuid()}>
                                 <td>
                                     <img
-                                        src={result.album.cover_small}
-                                        title={result.album.title}
-                                        alt={result.album.title}
-                                        style={{ width: "32px", height: "32px" }}
+                                        src={track.album.cover_small}
+                                        title={track.album.title}
+                                        alt={track.album.title}
+                                        style={{ width: "40px", height: "40px" }}
                                     />
                                 </td>
-                                <td>{result.title}</td>
+                                <td>{track.title}</td>
                                 <td>
-                                    <Link to={`/artist/${result.artist.id}`}>
-                                        {result.artist.name}
+                                    <Link to={`/artist/${track.artist.id}`}>
+                                        {track.artist.name}
                                     </Link>
                                 </td>
-                                <td>{result.duration}</td>
+                                <td>{track.duration}</td>
                             </tr>
                         )
                     })}

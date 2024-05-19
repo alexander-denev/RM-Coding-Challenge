@@ -8,6 +8,7 @@ import MainLayout from "layouts/MainLayout"
 // import App from "src/App.jsx"
 import SearchPage from "pages/SearchPage"
 import ArtistPage from "pages/ArtistPage"
+import AlbumPage from "pages/AlbumPage"
 
 const router = createBrowserRouter([
     {
@@ -20,9 +21,13 @@ const router = createBrowserRouter([
             {
                 path: "artist/:id",
                 element: <ArtistPage />
+            },
+            {
+                path: "album/:id",
+                element: <AlbumPage />
             }
         ]
-    }    
+    }
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
