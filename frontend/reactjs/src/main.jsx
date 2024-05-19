@@ -11,7 +11,6 @@ import ArtistPage from "pages/ArtistPage"
 
 const router = createBrowserRouter([
     {
-        path: "/",
         element: <MainLayout />,
         children: [
             {

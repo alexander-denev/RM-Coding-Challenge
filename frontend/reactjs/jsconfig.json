@@ -2,16 +2,19 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "src/*": ["src/*"],
-            "app/*": ["*"],
-            "components/*": ["src/components/*"],
-            "layouts/*": ["src/layouts/*"],
-            "pages/*": ["src/pages/*"],
-            "assets/*": ["src/assets/*"],
-            "boot/*": ["src/boot/*"],
-            "stores/*": ["src/stores/*"],
-            "css/*": ["src/css/*"],
-            "public/*": ["public/*"]
+            // "src/*": ["src/*"],
+            // "app/*": ["*"],
+            // "components/*": ["src/components/*"],
+            // "layouts/*": ["src/layouts/*"],
+            // "pages/*": ["src/pages/*"],
+            // "assets/*": ["src/assets/*"],
+            // "boot/*": ["src/boot/*"],
+            // "stores/*": ["src/stores/*"],
+            // "css/*": ["src/css/*"],
+            // "public/*": ["public/*"]
+            "*": ["src/*"],
+            "public/*": ["public/*"],
+            "app/*": ["*"]
         }
     },
     "exclude": ["dist", "node_modules"]
