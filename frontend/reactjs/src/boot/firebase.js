@@ -1,11 +1,7 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app"
 import { getFunctions, connectFunctionsEmulator } from "firebase/functions"
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Web app's Firebase configuration
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
     authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -21,6 +17,6 @@ export const app = initializeApp(firebaseConfig)
 export const functions = getFunctions(app)
 
 // If app is in development
-if (import.meta.env.MODE === "development") {
-    connectFunctionsEmulator(functions, "localhost", 5001)
+if (import.meta.env.DEV) {
+    connectFunctionsEmulator(functions, import.meta.env.VITE_FIREBASE_EMULATOR_FUNCTIONS_HOST, 5001)
 }

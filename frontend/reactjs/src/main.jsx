@@ -1,37 +1,20 @@
-import React from "react"
-import ReactDOM from "react-dom/client"
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { CssBaseline } from "@mui/material"
 import "./index.css"
 
-import MainLayout from "layouts/MainLayout"
+import React from "react"
+import ReactDOM from "react-dom/client"
 
-// import App from "src/App.jsx"
-import SearchPage from "pages/SearchPage"
-import ArtistPage from "pages/ArtistPage"
-import AlbumPage from "pages/AlbumPage"
+import { RouterProvider } from "react-router-dom"
+import router from "router"
 
-const router = createBrowserRouter([
-    {
-        element: <MainLayout />,
-        children: [
-            {
-                path: "search",
-                element: <SearchPage />
-            },
-            {
-                path: "artist/:id",
-                element: <ArtistPage />
-            },
-            {
-                path: "album/:id",
-                element: <AlbumPage />
-            }
-        ]
-    }
-])
+// import { ThemeProvider } from "@mui/material"
+// import theme from "theme"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        {/* <ThemeProvider theme={theme}> */}
+            <CssBaseline/>
+            <RouterProvider router={router} />
+        {/* </ThemeProvider> */}
     </React.StrictMode>
 )
